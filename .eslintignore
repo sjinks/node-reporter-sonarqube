@@ -3,7 +3,6 @@
 **/*.mjs
 **/*.d.ts
 **/*.d.mts
-/.tsimp/**
 /coverage/**
 /dist/**
 /node_modules/**

@@ -17,7 +17,6 @@ env:
   NPM_CONFIG_AUDIT: '0'
   SUPPRESS_SUPPORT: '1'
   NO_UPDATE_NOTIFIER: 'true'
-  TSIMP_DIAG: 'ignore'
 
 jobs:
   build:
