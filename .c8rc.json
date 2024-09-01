@@ -1,0 +1,5 @@
+{
+    "extension": [".mts"],
+    "exclude": ["test/**"],
+    "reporter": ["text", "lcov"]
+}

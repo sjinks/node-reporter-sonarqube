@@ -1,0 +1,54 @@
+{
+  "name": "node-reporter-sonarqube",
+  "description": "Node test reporter for SonarQube",
+  "version": "0.0.1",
+  "type": "module",
+  "exports": "./dist/lib/index.mjs",
+  "scripts": {
+    "build": "tsc",
+    "lint": "eslint -f gha .",
+    "typecheck": "tsc --noEmit",
+    "test": "tsimp --test --test-reporter=spec test/unit/*.spec.mts && tsimp test/integration/index.spec.mts",
+    "test:coverage": "c8 npm test",
+    "prepack": "npm run build"
+  },
+  "keywords": [
+    "test-reporter",
+    "node-reporter",
+    "sonarqube",
+    "sonarcloud"
+  ],
+  "files": [
+    "./dist/lib/*.mjs",
+    "./dist/lib/*.d.mts",
+    "./dist/lib/*.mjs.map"
+  ],
+  "typings": "./dist/lib/index.d.mts",
+  "author": "Volodymyr Kolesnykov <volodymyr@wildwolf.name> (https://wildwolf.name/)",
+  "license": "MIT",
+  "devDependencies": {
+    "@myrotvorets/buffer-stream": "^1.4.0",
+    "@myrotvorets/eslint-config-myrotvorets-ts": "^2.26.0",
+    "@types/node": "^22.0.0",
+    "c8": "^10.0.0",
+    "eslint-formatter-gha": "^1.5.0",
+    "tsimp": "^2.0.11",
+    "typescript": "^5.4.5"
+  },
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sjinks/node-reporter-sonarqube.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sjinks/node-reporter-sonarqube/issues"
+  },
+  "homepage": "https://github.com/sjinks/node-reporter-sonarqube#readme",
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  }
+}
