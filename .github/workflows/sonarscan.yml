@@ -64,6 +64,9 @@ jobs:
         run: npm run test:sonarqube
         continue-on-error: true
 
+      - name: Fix paths
+        run: sed -i "s!${GITHUB_WORKSPACE}/!!g" test-report.xml
+
       - name: Grab info
         id: info
         run: |
