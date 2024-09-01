@@ -1,13 +1,11 @@
 import { type TestEvent } from 'node:test/reporters';
-import { tag } from './utils.mjs';
+import { getFilename, tag } from './utils.mjs';
 
 interface TestInfo {
     name: string;
     duration: number;
     status: 'pass' | 'fail' | 'skip';
 }
-
-const getFilename = (file: string | undefined): string => file ?? '-';
 
 function handleEvent(event: TestEvent, testName: string[], tests: Record<string, TestInfo[]>): void {
     switch (event.type) {

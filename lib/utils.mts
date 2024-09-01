@@ -37,3 +37,12 @@ export function tag(
 
     return tag;
 }
+
+export function getFilename(file: string | undefined): string {
+    if (!file) {
+        return '-';
+    }
+
+    const prefix = process.env["GITHUB_WORKSPACE"] ?? process.env["npm_config_local_prefix"] ?? process.cwd();
+    return prefix && file.startsWith(prefix) ? file.slice(prefix.length + 1) : file;
+}
