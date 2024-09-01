@@ -21,7 +21,4 @@ jobs:
           fetch-depth: 0
 
       - run: |
-          pwd
-          ls -lha
-          ls -lha /github
-          ls -lha /github/workspace
+          env | sort
