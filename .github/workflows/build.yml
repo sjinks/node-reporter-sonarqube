@@ -56,10 +56,7 @@ jobs:
           cache: npm
 
       - name: Install dependencies
-        run: npm ci --ignore-scripts
-
-      - name: Run postinstall scripts
-        run: npm rebuild && npm run prepare --if-present
+        run: npm ci
 
       - name: Run tests
         run: npm test
@@ -102,10 +99,7 @@ jobs:
           cache: npm
 
       - name: Install dependencies
-        run: npm ci --ignore-scripts
-
-      - name: Run postinstall scripts
-        run: npm rebuild && npm run prepare --if-present
+        run: npm ci
 
       - name: Run tests
         run: |
