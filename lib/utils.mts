@@ -20,6 +20,7 @@ export function tag(
 ): string {
     const end = close && !content ? '/>' : '>';
     const pairs: string[] = [];
+    let unused;
 
     for (const key in attrs) {
         if (Object.hasOwn(attrs, key)) {
