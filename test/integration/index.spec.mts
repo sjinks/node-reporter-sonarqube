@@ -26,7 +26,7 @@ void describe('SonarQube Reporter', () => {
         const expected: (string | RegExp)[] = [
             '<?xml version="1.0" encoding="UTF-8"?>',
             '<testExecutions version="1">',
-            /^\t<file path=".*?\/test\/integration\/test\.m.s">$/u,
+            /^\t<file path="test\/integration\/test\.m.s">$/u,
             /^\t\t<testCase name="Sample test suite » will generate a report entry on failure" duration="\d+"><failure\/><\/testCase>$/u,
             /^\t\t<testCase name="Sample test suite » will not generate anything" duration="\d+"\/>/u,
             /^\t\t<testCase name="Sample test suite » Nested test suite » will be skipped" duration="\d+"><skipped\/><\/testCase>/u,
