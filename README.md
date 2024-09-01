@@ -1,9 +1,9 @@
 # node-reporter-sonarqube
 
-[![Build and Test](https://github.com/sjinks/mocha-reporter-sonarqube/actions/workflows/build.yml/badge.svg)](https://github.com/sjinks/mocha-reporter-sonarqube/actions/workflows/build.yml)
+[![Build and Test](https://github.com/sjinks/node-reporter-sonarqube/actions/workflows/build.yml/badge.svg)](https://github.com/sjinks/node-reporter-sonarqube/actions/workflows/build.yml)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=sjinks_node-reporter-sonarqube&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=sjinks_node-reporter-sonarqube)
 
-A GitHub Actions test reporter for the Node.js [Test Runner](https://nodejs.org/api/test.html).
+A [SonarQube](https://www.sonarsource.com/products/sonarqube/)/[SonarCloud](https://www.sonarsource.com/products/sonarcloud/) [test reporter](https://docs.sonarsource.com/sonarqube/latest/analyzing-source-code/test-coverage/generic-test-data/#generic-test-execution) for the Node.js [Test Runner](https://nodejs.org/api/test.html).
 
 ## Installation
 
@@ -58,5 +58,7 @@ GitHub Actions:
           args: >
             -Dsonar.testExecutionReportPaths=test-report.xml
 ```
+
+[Workflow used by this repository](.github/workflows/sonarscan.yml)
 
 See [Test reporters](https://nodejs.org/api/test.html#test-reporters) for details.
