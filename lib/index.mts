@@ -1,5 +1,5 @@
 import { type TestEvent } from 'node:test/reporters';
-import { tag } from './utils.mjs';
+import { getFilename, tag } from './utils.mjs';
 
 interface TestInfo {
     name: string;
@@ -7,9 +7,8 @@ interface TestInfo {
     status: 'pass' | 'fail' | 'skip';
 }
 
-const getFilename = (file: string | undefined): string => file ?? '-';
-
 function handleEvent(event: TestEvent, testName: string[], tests: Record<string, TestInfo[]>): void {
+    // eslint-disable-next-line default-case
     switch (event.type) {
         case 'test:start': {
             const { file, name, nesting } = event.data;
@@ -44,9 +43,6 @@ function handleEvent(event: TestEvent, testName: string[], tests: Record<string,
                 tests[file]!.push({ name: testName.join(' » '), duration, status });
             }
 
-            break;
-
-        default:
             break;
     }
 }

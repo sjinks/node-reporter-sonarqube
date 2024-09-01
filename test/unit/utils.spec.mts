@@ -1,6 +1,6 @@
-import { describe, test } from 'node:test';
+import { afterEach, before, describe, test } from 'node:test';
 import { equal } from 'node:assert/strict';
-import { escapeXmlAttribute, tag } from '../../lib/utils.mjs';
+import { escapeXmlAttribute, getFilename, tag } from '../../lib/utils.mjs';
 
 await describe('utils', async () => {
     await describe('escapeXmlAttribute', async () => {
@@ -44,6 +44,50 @@ await describe('utils', async () => {
                 result,
                 '<a href="https://example.com?param=1&amp;other=&lt;value&gt;" title="A &quot;link&quot;">Click here</a>',
             );
+        });
+    });
+
+    await describe('getFilename', async () => {
+        let originalEnv: typeof process.env;
+
+        before(() => {
+            originalEnv = { ...process.env };
+            process.env = {};
+        });
+
+        afterEach(() => {
+            process.env = { ...originalEnv };
+        });
+
+        await test('returns "-" when file is undefined', () => equal(getFilename(undefined), '-'));
+
+        await test('returns the file name when it does not start with the prefix', () => {
+            const file = '/some/other/path/file.txt';
+            const result = getFilename(file);
+            equal(result, file);
+        });
+
+        await test('returns the relative path when file starts with the prefix', () => {
+            const prefix = process.cwd();
+            const file = `${prefix}/file.txt`;
+            const result = getFilename(file);
+            equal(result, 'file.txt');
+        });
+
+        await test('GITHUB_WORKSPACE has precedence over npm_config_local_prefix', () => {
+            process.env['GITHUB_WORKSPACE'] = '/github/workspace';
+            process.env['npm_config_local_prefix'] = '/github/workspace/test';
+            const file = '/github/workspace/test/file.txt';
+            const result = getFilename(file);
+            equal(result, 'test/file.txt');
+        });
+
+        await test('npm_config_local_prefix is used when GITHUB_WORKSPACE is not set', () => {
+            delete process.env['GITHUB_WORKSPACE'];
+            process.env['npm_config_local_prefix'] = '/npm/prefix';
+            const file = '/npm/prefix/file.txt';
+            const result = getFilename(file);
+            equal(result, 'file.txt');
         });
     });
 });
