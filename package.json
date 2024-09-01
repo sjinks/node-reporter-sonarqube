@@ -8,8 +8,9 @@
     "build": "tsc",
     "lint": "eslint -f gha .",
     "typecheck": "tsc --noEmit",
-    "test": "tsimp --test --test-reporter=spec test/unit/*.spec.mts && tsimp test/integration/index.spec.mts",
+    "test": "tsimp --test test/unit/*.spec.mts && tsimp test/integration/index.spec.mts",
     "test:coverage": "c8 npm test",
+    "test:sonarqube": "c8 tsimp --test-reporter=./lib/loader.mjs --test-reporter-destination=test-report.xml --test-reporter=spec --test-reporter-destination=stdout --test test/unit/*.spec.mts",
     "prepack": "npm run build"
   },
   "keywords": [
