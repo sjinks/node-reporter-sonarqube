@@ -15,7 +15,6 @@ env:
   NPM_CONFIG_AUDIT: '0'
   SUPPRESS_SUPPORT: '1'
   NO_UPDATE_NOTIFIER: 'true'
-  TSIMP_DIAG: 'ignore'
 
 jobs:
   build:
@@ -103,5 +102,5 @@ jobs:
 
       - name: Run tests
         run: |
-          npx tsimp --test-reporter=./lib/loader.mjs --test-reporter-destination=test-report.xml --test-reporter=spec --test-reporter-destination=stdout --test test/unit/*.spec.mts
+          node --import=./loader.mjs --test-reporter=./lib/loader.mjs --test-reporter-destination=test-report.xml --test-reporter=spec --test-reporter-destination=stdout --test test/unit/*.spec.mts
           cat test-report.xml

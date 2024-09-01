@@ -1,6 +1,5 @@
 .vscode
-.nyc_output
-.tsimp
 coverage
 dist
 node_modules
+test-report.xml
