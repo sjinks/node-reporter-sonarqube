@@ -89,5 +89,11 @@ await describe('utils', async () => {
             const result = getFilename(file);
             equal(result, 'file.txt');
         });
+
+        await test('should convert file URL to path', () => {
+            const file = 'file:///path/to/file.txt';
+            const result = getFilename(file);
+            equal(result, '/path/to/file.txt');
+        });
     });
 });

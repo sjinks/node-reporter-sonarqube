@@ -1,3 +1,5 @@
+import { fileURLToPath } from 'node:url';
+
 export function escapeXmlAttribute(value: string): string {
     const escapeMap = {
         '&': '&amp;',
@@ -41,6 +43,10 @@ export function tag(
 export function getFilename(file: string | undefined): string {
     if (!file) {
         return '-';
+    }
+
+    if (file.startsWith('file://')) {
+        file = fileURLToPath(file);
     }
 
     const prefix = process.env['GITHUB_WORKSPACE'] ?? process.env['npm_config_local_prefix'] ?? process.cwd();
