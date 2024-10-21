@@ -191,8 +191,9 @@ const queue: TestEvent[] = [
     },
 ];
 
+// eslint-disable-next-line @typescript-eslint/require-await
 async function* generator(): AsyncGenerator<TestEvent, void> {
-    for await (const event of queue) {
+    for (const event of queue) {
         yield event;
     }
 }
