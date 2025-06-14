@@ -19,10 +19,7 @@ function handleEvent(event: TestEvent, testName: string[], tests: Record<string,
             testName.push(name);
 
             const fname = getFilename(file);
-            if (tests[fname] === undefined) {
-                tests[fname] = [];
-            }
-
+            tests[fname] ??= [];
             break;
         }
 
