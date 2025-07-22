@@ -1,5 +1,5 @@
 import { deepEqual } from 'node:assert/strict';
-import { describe, test } from 'node:test';
+import { EventData, describe, test } from 'node:test';
 import type { TestEvent } from 'node:test/reporters';
 import sonarReporter from '../../lib/index.mjs';
 
@@ -32,7 +32,7 @@ const queue: TestEvent[] = [
             testNumber: 1,
             details: {
                 duration_ms: 1.522999,
-                error: new Error('Expected 2 to equal 1') as TestError,
+                error: new Error('Expected 2 to equal 1') as EventData.Error,
             },
             line: 4,
             column: 10,
@@ -138,7 +138,7 @@ const queue: TestEvent[] = [
             details: {
                 duration_ms: 2.418505,
                 type: 'suite',
-                error: new Error('1 subtest failed') as TestError,
+                error: new Error('1 subtest failed') as EventData.Error,
             },
             line: 3,
             column: 6,
