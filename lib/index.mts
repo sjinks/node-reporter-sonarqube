@@ -1,3 +1,4 @@
+import { type EventData } from 'node:test';
 import { type TestEvent } from 'node:test/reporters';
 import { getFilename, tag } from './utils.mjs';
 
@@ -8,46 +9,62 @@ interface TestInfo {
     message?: string;
 }
 
+function handleTestStart(data: EventData.TestStart, testName: string[], tests: Record<string, TestInfo[]>): void {
+    const { file, name, nesting } = data;
+    while (testName.length > nesting) {
+        testName.pop();
+    }
+
+    testName.push(name);
+
+    const fname = getFilename(file);
+    tests[fname] ??= [];
+}
+
+function handleTestFailure(data: EventData.TestFail, testName: string[], tests: Record<string, TestInfo[]>): void {
+    if (data.details.type !== 'suite') {
+        const file = getFilename(data.file);
+        const duration = data.details.duration_ms;
+        const status = 'fail';
+        const message = data.details.error.toString() || '<test failed>';
+        tests[file]!.push({ name: testName.join(' » '), duration, status, message });
+    }
+}
+
+function handleTestPass(data: EventData.TestPass, testName: string[], tests: Record<string, TestInfo[]>): void {
+    if (data.details.type !== 'suite') {
+        const file = getFilename(data.file);
+        const duration = data.details.duration_ms;
+        let message: string | undefined;
+        let status: TestInfo['status'];
+
+        if (data.todo) {
+            status = 'skip';
+            message = typeof data.todo === 'string' ? data.todo : '<TODO>';
+        } else if (data.skip) {
+            status = 'skip';
+            message = typeof data.skip === 'string' ? data.skip : '<SKIP>';
+        } else {
+            status = 'pass';
+        }
+
+        tests[file]!.push({ name: testName.join(' » '), duration, status, message });
+    }
+}
+
 function handleEvent(event: TestEvent, testName: string[], tests: Record<string, TestInfo[]>): void {
     // eslint-disable-next-line default-case
     switch (event.type) {
-        case 'test:start': {
-            const { file, name, nesting } = event.data;
-            while (testName.length > nesting) {
-                testName.pop();
-            }
-
-            testName.push(name);
-
-            const fname = getFilename(file);
-            tests[fname] ??= [];
+        case 'test:start':
+            handleTestStart(event.data, testName, tests);
             break;
-        }
+
+        case 'test:fail':
+            handleTestFailure(event.data, testName, tests);
+            break;
 
         case 'test:pass':
-        case 'test:fail':
-            if (event.data.details.type !== 'suite') {
-                const file = getFilename(event.data.file);
-                const duration = event.data.details.duration_ms;
-                let message: string | undefined;
-                let status: TestInfo['status'];
-                if (event.type === 'test:fail') {
-                    status = 'fail';
-                    message = event.data.details.error.toString() || '<test failed>';
-                } else if (event.data.todo || event.data.skip) {
-                    status = 'skip';
-                    if (event.data.todo !== undefined) {
-                        message = typeof event.data.todo === 'string' ? event.data.todo : '<TODO>';
-                    } else {
-                        message = typeof event.data.skip === 'string' ? event.data.skip : '<SKIP>';
-                    }
-                } else {
-                    status = 'pass';
-                }
-
-                tests[file]!.push({ name: testName.join(' » '), duration, status, message });
-            }
-
+            handleTestPass(event.data, testName, tests);
             break;
     }
 }
