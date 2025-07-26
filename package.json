@@ -1,7 +1,7 @@
 {
   "name": "node-reporter-sonarqube",
   "description": "Node test reporter for SonarQube",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "type": "module",
   "exports": "./dist/lib/index.mjs",
   "scripts": {
