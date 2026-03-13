@@ -14,12 +14,7 @@ export function escapeXmlAttribute(value: string): string {
     return value.replace(/[&<>"']/gu, (char) => escapeMap[char as EscapeMapKey]);
 }
 
-export function tag(
-    name: string,
-    attrs: Record<string, string> = {},
-    close = true,
-    content: string | undefined = undefined,
-): string {
+export function tag(name: string, attrs: Record<string, string> = {}, close = true, content?: string): string {
     const end = close && !content ? '/>' : '>';
     const pairs: string[] = [];
 
