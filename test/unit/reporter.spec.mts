@@ -9,6 +9,9 @@ const queue: TestEvent[] = [
         data: {
             nesting: 0,
             name: 'Sample test suite',
+            testId: 1,
+            parentId: undefined,
+            tags: [],
             line: 3,
             column: 6,
             file: 'node-reporter-sonarqube/test/integration/test.mts',
@@ -19,6 +22,9 @@ const queue: TestEvent[] = [
         data: {
             nesting: 1,
             name: 'will generate a report entry on failure',
+            testId: 2,
+            parentId: 1,
+            tags: [],
             line: 4,
             column: 10,
             file: 'node-reporter-sonarqube/test/integration/test.mts',
@@ -28,6 +34,9 @@ const queue: TestEvent[] = [
         type: 'test:fail',
         data: {
             name: 'will generate a report entry on failure',
+            testId: 2,
+            parentId: 1,
+            tags: [],
             nesting: 1,
             testNumber: 1,
             details: {
@@ -44,6 +53,9 @@ const queue: TestEvent[] = [
         data: {
             nesting: 1,
             name: 'will not generate anything',
+            testId: 3,
+            parentId: 1,
+            tags: [],
             line: 5,
             column: 10,
             file: 'node-reporter-sonarqube/test/integration/test.mts',
@@ -53,6 +65,9 @@ const queue: TestEvent[] = [
         type: 'test:pass',
         data: {
             name: 'will not generate anything',
+            testId: 3,
+            parentId: 1,
+            tags: [],
             nesting: 1,
             testNumber: 2,
             details: { duration_ms: 0.081786 },
@@ -66,6 +81,9 @@ const queue: TestEvent[] = [
         data: {
             nesting: 1,
             name: 'Nested test suite',
+            testId: 4,
+            parentId: 1,
+            tags: [],
             line: 6,
             column: 10,
             file: 'node-reporter-sonarqube/test/integration/test.mts',
@@ -76,6 +94,9 @@ const queue: TestEvent[] = [
         data: {
             nesting: 2,
             name: 'will be skipped',
+            testId: 5,
+            parentId: 4,
+            tags: [],
             line: 7,
             column: 14,
             file: 'node-reporter-sonarqube/test/integration/test.mts',
@@ -85,6 +106,9 @@ const queue: TestEvent[] = [
         type: 'test:pass',
         data: {
             name: 'will be skipped',
+            testId: 5,
+            parentId: 4,
+            tags: [],
             nesting: 2,
             testNumber: 1,
             details: { duration_ms: 0.115159 },
@@ -99,6 +123,9 @@ const queue: TestEvent[] = [
         data: {
             nesting: 2,
             name: 'todo test',
+            testId: 6,
+            parentId: 4,
+            tags: [],
             line: 8,
             column: 14,
             file: 'node-reporter-sonarqube/test/integration/test.mts',
@@ -108,6 +135,9 @@ const queue: TestEvent[] = [
         type: 'test:pass',
         data: {
             name: 'todo test',
+            testId: 6,
+            parentId: 4,
+            tags: [],
             nesting: 2,
             testNumber: 2,
             details: { duration_ms: 0.06991 },
@@ -121,6 +151,9 @@ const queue: TestEvent[] = [
         type: 'test:pass',
         data: {
             name: 'Nested test suite',
+            testId: 4,
+            parentId: 1,
+            tags: [],
             nesting: 1,
             testNumber: 3,
             details: { duration_ms: 0.303933, type: 'suite' },
@@ -133,6 +166,9 @@ const queue: TestEvent[] = [
         type: 'test:fail',
         data: {
             name: 'Sample test suite',
+            testId: 1,
+            parentId: undefined,
+            tags: [],
             nesting: 0,
             testNumber: 1,
             details: {
@@ -150,6 +186,9 @@ const queue: TestEvent[] = [
         data: {
             nesting: 0,
             name: 'top level test 1',
+            testId: 7,
+            parentId: undefined,
+            tags: [],
             line: 11,
             column: 6,
             file: 'node-reporter-sonarqube/test/integration/test.mts',
@@ -159,6 +198,9 @@ const queue: TestEvent[] = [
         type: 'test:pass',
         data: {
             name: 'top level test 1',
+            testId: 7,
+            parentId: undefined,
+            tags: [],
             nesting: 0,
             testNumber: 2,
             details: { duration_ms: 0.052553 },
@@ -172,6 +214,9 @@ const queue: TestEvent[] = [
         data: {
             nesting: 0,
             name: 'top level test 2',
+            testId: 8,
+            parentId: undefined,
+            tags: [],
             line: 12,
             column: 6,
             file: 'node-reporter-sonarqube/test/integration/test.mts',
@@ -181,6 +226,9 @@ const queue: TestEvent[] = [
         type: 'test:pass',
         data: {
             name: 'top level test 2',
+            testId: 8,
+            parentId: undefined,
+            tags: [],
             nesting: 0,
             testNumber: 3,
             details: { duration_ms: 0.055445 },
