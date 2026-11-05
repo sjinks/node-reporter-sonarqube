@@ -38,7 +38,9 @@ jobs:
             binaries.sonarsource.com:443
             github.com:443
             npm.pkg.github.com:443
+            nodejs.org:443
             objects.githubusercontent.com:443
+            release-assets.githubusercontent.com:443
             registry.npmjs.org:443
             api.sonarcloud.io:443
             analysis-sensorcache-eu-central-1-prod.s3.amazonaws.com:443

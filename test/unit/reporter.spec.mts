@@ -7,6 +7,9 @@ const queue: TestEvent[] = [
     {
         type: 'test:start',
         data: {
+            parentId: undefined,
+            tags: [],
+            testId: 1,
             nesting: 0,
             name: 'Sample test suite',
             line: 3,
@@ -17,6 +20,9 @@ const queue: TestEvent[] = [
     {
         type: 'test:start',
         data: {
+            parentId: 1,
+            tags: [],
+            testId: 2,
             nesting: 1,
             name: 'will generate a report entry on failure',
             line: 4,
@@ -27,6 +33,9 @@ const queue: TestEvent[] = [
     {
         type: 'test:fail',
         data: {
+            parentId: 1,
+            tags: [],
+            testId: 2,
             name: 'will generate a report entry on failure',
             nesting: 1,
             testNumber: 1,
@@ -42,6 +51,9 @@ const queue: TestEvent[] = [
     {
         type: 'test:start',
         data: {
+            parentId: 1,
+            tags: [],
+            testId: 3,
             nesting: 1,
             name: 'will not generate anything',
             line: 5,
@@ -52,6 +64,9 @@ const queue: TestEvent[] = [
     {
         type: 'test:pass',
         data: {
+            parentId: 1,
+            tags: [],
+            testId: 3,
             name: 'will not generate anything',
             nesting: 1,
             testNumber: 2,
@@ -64,6 +79,9 @@ const queue: TestEvent[] = [
     {
         type: 'test:start',
         data: {
+            parentId: 1,
+            tags: [],
+            testId: 4,
             nesting: 1,
             name: 'Nested test suite',
             line: 6,
@@ -74,6 +92,9 @@ const queue: TestEvent[] = [
     {
         type: 'test:start',
         data: {
+            parentId: 4,
+            tags: [],
+            testId: 5,
             nesting: 2,
             name: 'will be skipped',
             line: 7,
@@ -84,6 +105,9 @@ const queue: TestEvent[] = [
     {
         type: 'test:pass',
         data: {
+            parentId: 4,
+            tags: [],
+            testId: 5,
             name: 'will be skipped',
             nesting: 2,
             testNumber: 1,
@@ -97,6 +121,9 @@ const queue: TestEvent[] = [
     {
         type: 'test:start',
         data: {
+            parentId: 4,
+            tags: [],
+            testId: 6,
             nesting: 2,
             name: 'todo test',
             line: 8,
@@ -107,6 +134,9 @@ const queue: TestEvent[] = [
     {
         type: 'test:pass',
         data: {
+            parentId: 4,
+            tags: [],
+            testId: 6,
             name: 'todo test',
             nesting: 2,
             testNumber: 2,
@@ -120,6 +150,9 @@ const queue: TestEvent[] = [
     {
         type: 'test:pass',
         data: {
+            parentId: 1,
+            tags: [],
+            testId: 4,
             name: 'Nested test suite',
             nesting: 1,
             testNumber: 3,
@@ -132,6 +165,9 @@ const queue: TestEvent[] = [
     {
         type: 'test:fail',
         data: {
+            parentId: undefined,
+            tags: [],
+            testId: 1,
             name: 'Sample test suite',
             nesting: 0,
             testNumber: 1,
@@ -148,6 +184,9 @@ const queue: TestEvent[] = [
     {
         type: 'test:start',
         data: {
+            parentId: undefined,
+            tags: [],
+            testId: 7,
             nesting: 0,
             name: 'top level test 1',
             line: 11,
@@ -158,6 +197,9 @@ const queue: TestEvent[] = [
     {
         type: 'test:pass',
         data: {
+            parentId: undefined,
+            tags: [],
+            testId: 7,
             name: 'top level test 1',
             nesting: 0,
             testNumber: 2,
@@ -170,6 +212,9 @@ const queue: TestEvent[] = [
     {
         type: 'test:start',
         data: {
+            parentId: undefined,
+            tags: [],
+            testId: 8,
             nesting: 0,
             name: 'top level test 2',
             line: 12,
@@ -180,6 +225,9 @@ const queue: TestEvent[] = [
     {
         type: 'test:pass',
         data: {
+            parentId: undefined,
+            tags: [],
+            testId: 8,
             name: 'top level test 2',
             nesting: 0,
             testNumber: 3,
